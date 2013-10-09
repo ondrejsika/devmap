@@ -31,15 +31,27 @@
             <br><button onclick="dotCommaSwitch()">dot/comma</button>
         </p>
         <p>
+            source <input id="mapSource" value="http://{s}.tile.osm.org/{z}/{x}/{y}.png">
+            <button onclick="setMapSource()">Set</button>
+        </p>
+        <p>
             2013 <a href="http://ondrejsika.com">Ondrej Sika</a>
         </p>
     </div>
     <script type="text/javascript">
         var map = L.map('map').setView([49.7447656, 13.3752194], 13);
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+
+        getTiles = function(source){
+            return L.tileLayer(source, {}).addTo(map);
+        }
+
+        var tiles = getTiles('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
         
+        setMapSource = function(){
+            map.removeLayer(tiles);
+            tiles = getTiles(document.getElementById("mapSource").value)
+        }
+
         L.polygon([
             [-180, 0],
             [180, 0]
