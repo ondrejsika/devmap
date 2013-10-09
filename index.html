@@ -25,6 +25,11 @@
             zoom: <span id="zoom"></span>
         </p>
         <p>
+            map width <input id="mapWidth" value="100%">
+            <br>map height <input id="mapHeight" value="100%">
+            <br><button onclick="setMapWidthHeight()">Set</button>
+        </p>
+        <p>
             2013 <a href="http://ondrejsika.com">Ondrej Sika</a>
         </p>
     </div>
@@ -51,6 +56,11 @@
             document.getElementById("eastWest").innerHTML = map.getBounds().getEast() - map.getBounds().getWest();
             document.getElementById("northSouth").innerHTML = map.getBounds().getNorth() - map.getBounds().getSouth();
             document.getElementById("zoom").innerHTML = map.getZoom();
+        }
+
+        setMapWidthHeight = function(){
+            document.getElementById("map").style.width = document.getElementById("mapWidth").value;
+            document.getElementById("map").style.height = document.getElementById("mapHeight").value;
         }
 
         map.on('move', getCoords);
