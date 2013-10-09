@@ -35,6 +35,10 @@
             <button onclick="setMapSource()">Set</button>
         </p>
         <p>
+            grid <input id="grid" value="10">deg
+            <button onclick="updateGrid()">Set</button>
+        </p>
+        <p>
             2013 <a href="http://ondrejsika.com">Ondrej Sika</a>
         </p>
     </div>
@@ -52,6 +56,12 @@
             tiles = getTiles(document.getElementById("mapSource").value)
         }
 
+        updateGrid = function(){
+            grid.forEach(function(e){map.removeLayer(e)});
+            grid = [];
+            setGrid(Number(document.getElementById("grid").value))
+        }
+
         L.polygon([
             [-180, 0],
             [180, 0]
@@ -61,17 +71,32 @@
             [0, 180]
         ]).addTo(map);
 
-        for(i = -90 ; i <= 90; i=i+10){
-            L.polygon([
-                [0+i, -180],
-                [0+i, 180]
-            ]).addTo(map);
-        }
-        for(i = -180 ; i <= 180; i=i+10){
-            L.polygon([
-                [-180, 0+i],
-                [180, 0+i]
-            ]).addTo(map);
+        var grid = [];
+        setGrid = function(step){
+            for(i = 0 ; i <= 90; i=i+step){
+                line = L.polygon([
+                    [0+i, -180],
+                    [0+i, 180]
+                ]).addTo(map);
+                grid.push(line);
+                line = L.polygon([
+                    [0-i, -180],
+                    [0-i, 180]
+                ]).addTo(map);
+                grid.push(line);
+            }
+            for(i = 0; i <= 180; i=i+step){
+                line = L.polygon([
+                    [-180, 0+i],
+                    [180, 0+i]
+                ]).addTo(map);
+                grid.push(line);
+                line = L.polygon([
+                    [-180, 0-i],
+                    [180, 0-i]
+                ]).addTo(map);
+                grid.push(line);
+            }
         }
 
         var dotComma = ".";
