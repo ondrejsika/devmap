@@ -1,0 +1,62 @@
+<html>
+<head>
+    <title>DevMap</title>
+    <script type="text/javascript" src="leaflet/leaflet-src.js"></script>
+    <link rel="stylesheet" type="text/css" href="leaflet/leaflet.css">
+    <style type="text/css">
+        body {margin: 0; }
+    </style>
+</head>
+<body>
+    <div id="map" class="map" style="width:100%;height:100%"></div>
+    <div style="position:absolute;right:10px;top:10px;width:350px;background:white;padding:15px;">
+        <h3>DevMap</h3>
+        <p>
+            north: <span id="north"></span>
+            <br>south: <span id="south"></span>
+            <br>east: <span id="east"></span>
+            <br>west: <span id="west"></span>
+        </p>
+        <p>
+            east-west: <span id="eastWest"></span>
+            <br>north-south: <span id="northSouth"></span>
+        </p>
+        <p>
+            zoom: <span id="zoom"></span>
+        </p>
+        <p>
+            2013 <a href="http://ondrejsika.com">Ondrej Sika</a>
+        </p>
+    </div>
+    <script type="text/javascript">
+        var map = L.map('map').setView([49.7447656, 13.3752194], 13);
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        
+        L.polygon([
+            [-180, 0],
+            [180, 0]
+        ]).addTo(map);
+        L.polygon([
+            [0, -180],
+            [0, 180]
+        ]).addTo(map);
+
+        getCoords = function(){
+            document.getElementById("north").innerHTML = map.getBounds().getNorth();
+            document.getElementById("south").innerHTML = map.getBounds().getSouth();
+            document.getElementById("east").innerHTML = map.getBounds().getEast();
+            document.getElementById("west").innerHTML = map.getBounds().getWest();
+            document.getElementById("eastWest").innerHTML = map.getBounds().getEast() - map.getBounds().getWest();
+            document.getElementById("northSouth").innerHTML = map.getBounds().getNorth() - map.getBounds().getSouth();
+            document.getElementById("zoom").innerHTML = map.getZoom();
+        }
+
+        map.on('move', getCoords);
+        getCoords();
+    </script>
+</body>
+</html>
+
+
