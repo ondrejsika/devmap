@@ -1,0 +1,9 @@
+body {margin: 0; }
+#controllPanel {
+    position:absolute;
+    right:10px;
+    top:10px;
+    width:350px;
+    background:white;
+    padding:15px;
+}
