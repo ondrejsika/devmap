@@ -62,39 +62,30 @@
             setGrid(Number(document.getElementById("grid").value))
         }
 
-        L.polygon([
-            [-180, 0],
-            [180, 0]
-        ]).addTo(map);
-        L.polygon([
-            [0, -180],
-            [0, 180]
-        ]).addTo(map);
-
         var grid = [];
         setGrid = function(step){
             for(i = 0 ; i <= 90; i=i+step){
                 line = L.polygon([
                     [0+i, -180],
                     [0+i, 180]
-                ]).addTo(map);
+                ], {weight:1}).addTo(map);
                 grid.push(line);
                 line = L.polygon([
                     [0-i, -180],
                     [0-i, 180]
-                ]).addTo(map);
+                ], {weight:1}).addTo(map);
                 grid.push(line);
             }
             for(i = 0; i <= 180; i=i+step){
                 line = L.polygon([
                     [-180, 0+i],
                     [180, 0+i]
-                ]).addTo(map);
+                ], {weight:1}).addTo(map);
                 grid.push(line);
                 line = L.polygon([
                     [-180, 0-i],
                     [180, 0-i]
-                ]).addTo(map);
+                ], {weight:1}).addTo(map);
                 grid.push(line);
             }
         }
