@@ -61,6 +61,19 @@
             [0, 180]
         ]).addTo(map);
 
+        for(i = -90 ; i <= 90; i=i+10){
+            L.polygon([
+                [0+i, -180],
+                [0+i, 180]
+            ]).addTo(map);
+        }
+        for(i = -180 ; i <= 180; i=i+10){
+            L.polygon([
+                [-180, 0+i],
+                [180, 0+i]
+            ]).addTo(map);
+        }
+
         var dotComma = ".";
         dotCommaSwitch = function(){
             if (dotComma == ".") {
