@@ -59,6 +59,16 @@ dotCommaSwitch = function(){
     }
 }
 
+getRawPolygon = function(a, b){
+    return "POLYGON(("+a[1]+" "+a[0]+", "+b[1]+" "+a[0]+", "+b[1]+" "+b[0]+", "+a[1]+" "+b[0]+", "+a[1]+" "+a[0]+"))";
+}
+
+getPolygon = function(){
+    a = [map.getBounds().getEast(), map.getBounds().getSouth()];
+    b = [map.getBounds().getWest(), map.getBounds().getNorth()];
+    return getRawPolygon(a, b);
+}
+
 getCoords = function(){
     document.getElementById("center").innerHTML =  map.getBounds().getCenter().lng.toString().replace(".", dotComma) + " " + map.getBounds().getCenter().lat.toString().replace(".", dotComma);
     document.getElementById("north").innerHTML = map.getBounds().getNorth().toString().replace(".", dotComma);
@@ -68,6 +78,7 @@ getCoords = function(){
     document.getElementById("eastWest").innerHTML = (map.getBounds().getEast() - map.getBounds().getWest()).toString().replace(".", dotComma);
     document.getElementById("northSouth").innerHTML = (map.getBounds().getNorth() - map.getBounds().getSouth()).toString().replace(".", dotComma);
     document.getElementById("zoom").innerHTML = map.getZoom();
+    document.getElementById("polygon").value = getPolygon();
 }
 
 setMapWidthHeight = function(){
