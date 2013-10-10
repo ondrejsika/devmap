@@ -60,7 +60,7 @@ dotCommaSwitch = function(){
 }
 
 getRawPolygon = function(a, b){
-    return "POLYGON(("+a[1]+" "+a[0]+", "+b[1]+" "+a[0]+", "+b[1]+" "+b[0]+", "+a[1]+" "+b[0]+", "+a[1]+" "+a[0]+"))";
+    return "POLYGON(("+a[0]+" "+a[1]+", "+b[0]+" "+a[1]+", "+b[0]+" "+b[1]+", "+a[0]+" "+b[1]+", "+a[0]+" "+a[1]+"))";
 }
 
 getPolygon = function(){
