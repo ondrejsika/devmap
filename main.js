@@ -60,6 +60,7 @@ dotCommaSwitch = function(){
 }
 
 getCoords = function(){
+    document.getElementById("center").innerHTML =  map.getBounds().getCenter().lng.toString().replace(".", dotComma) + " " + map.getBounds().getCenter().lat.toString().replace(".", dotComma);
     document.getElementById("north").innerHTML = map.getBounds().getNorth().toString().replace(".", dotComma);
     document.getElementById("south").innerHTML = map.getBounds().getSouth().toString().replace(".", dotComma);
     document.getElementById("east").innerHTML = map.getBounds().getEast().toString().replace(".", dotComma);
