@@ -1,4 +1,5 @@
 var map = L.map('map').setView([49.7447656, 13.3752194], 3);
+var newPolygon;
 
 getTiles = function(source){
     return L.tileLayer(source, {}).addTo(map);
@@ -15,6 +16,35 @@ updateGrid = function(){
     grid.forEach(function(e){map.removeLayer(e)});
     grid = [];
     setGrid(Number(document.getElementById("grid").value))
+}
+
+ArrayRemove = function(a, e){
+    while (true) {
+        index = a.indexOf(e);
+        if (index > -1) a.splice(index, 1);
+        else break;
+    }
+    return a;
+} 
+
+createNewPolygon = function(){
+    rmPolygon();
+    polygon = document.getElementById("newPolygonStr").value
+    var polygon2 = [];
+    regexp = /\(([^()]+)\)/g;
+    var results;
+    while( results = regexp.exec(polygon) ) polygon2.push(results[1]);
+    polygon = [];
+    polygon2[0].split(",").forEach(function(e){
+        coords = ArrayRemove(e.split(" "), "");
+        polygon.push([Number(coords[1]), Number(coords[0])]);
+    });
+    // polygon is list of points
+    newPolygon = L.polygon(polygon, {weight:1, color:"red"}).addTo(map);
+}
+
+rmPolygon = function(){
+    if (newPolygon) map.removeLayer(newPolygon);
 }
 
 var grid = [];
