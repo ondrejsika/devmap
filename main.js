@@ -1,5 +1,6 @@
 var map = L.map('map').setView([49.7447656, 13.3752194], 3);
 var newPolygon;
+var newPoint;
 
 getTiles = function(source){
     return L.tileLayer(source, {}).addTo(map);
@@ -45,6 +46,17 @@ createNewPolygon = function(){
 
 rmPolygon = function(){
     if (newPolygon) map.removeLayer(newPolygon);
+}
+
+createNewPoint = function(){
+    rmPoint();
+    point = document.getElementById("newPointStr").value
+    point = point.substring(point.indexOf("(")+1, point.indexOf(")")).split(" ");
+    newPoint = L.circleMarker([Number(point[1]), Number(point[0])], {radius:5, color:"red"}).addTo(map);
+}
+
+rmPoint = function(){
+    if (newPoint) map.removeLayer(newPoint);
 }
 
 var grid = [];
