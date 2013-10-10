@@ -128,7 +128,24 @@ setMapWidthHeight = function(){
     document.getElementById("map").style.height = document.getElementById("mapHeight").value;
 }
 
+
+var tabs = ["tabInfo", "tabSettings", "tabDraw"];
+var tabs_p = 0;
+
+hideAllTabs = function(){
+    tabs.forEach(function(e){
+        document.getElementById(e).style.display = "none";
+    })
+}
+
+showTab = function(tab){
+    hideAllTabs();
+    document.getElementById(tab).style.display = "block";
+}
+
 map.on('move', getCoords);
 getCoords();
+hideAllTabs();
+showTab("tabInfo");
 
 document.getElementsByClassName("leaflet-control-attribution")[0].style.display = "none";

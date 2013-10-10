@@ -10,44 +10,57 @@
     <div id="controllPanel">
         <h3>DevMap</h3>
         <p>
-            center: <span id="center"></span>
+            <a href="#" onclick="showTab('tabInfo')">info</a>
+            <a href="#" onclick="showTab('tabDraw')">draw</a>
+            <a href="#" onclick="showTab('tabSettings')">settings</a>
         </p>
-        <p>
-            north: <span id="north"></span>
-            <br>south: <span id="south"></span>
-            <br>east: <span id="east"></span>
-            <br>west: <span id="west"></span>
-        </p>
-        <p>
-            east-west: <span id="eastWest"></span>
-            <br>north-south: <span id="northSouth"></span>
-        </p>
-        <p>
-            zoom: <span id="zoom"></span>
-        </p>
-        <p>
-            polygon: <input id="polygon" onclick="this.select();" style="background:#DDDDDD;" readonly>
-        </p>
-        <p>
-            map width <input id="mapWidth" value="100%">
-            <br>map height <input id="mapHeight" value="100%">
-            <button onclick="setMapWidthHeight()">Set</button>
-            <br><button onclick="dotCommaSwitch()">dot/comma</button>
-        </p>
-        <p>
-            source <input id="mapSource" value="http://{s}.tile.osm.org/{z}/{x}/{y}.png">
-            <button onclick="setMapSource()">Set</button>
-        </p>
-        <p>
-            grid <input id="grid" value="10">deg
-            <button onclick="updateGrid()">Set</button>
-            <br>point <input id="newPointStr" value="">
-            <button onclick="createNewPoint()">Set</button>
-            <button onclick="rmPoint()">remove</button>
-            <br>polygon <input id="newPolygonStr" value="">
-            <button onclick="createNewPolygon()">Set</button>
-            <button onclick="rmPolygon()">remove</button>
-        </p>
+        <div id="tabInfo">
+            <p>
+                center: <span id="center"></span>
+            </p>
+            <p>
+                north: <span id="north"></span>
+                <br>south: <span id="south"></span>
+                <br>east: <span id="east"></span>
+                <br>west: <span id="west"></span>
+            </p>
+            <p>
+                east-west: <span id="eastWest"></span>
+                <br>north-south: <span id="northSouth"></span>
+            </p>
+            <p>
+                zoom: <span id="zoom"></span>
+            </p>
+            <p>
+                polygon: <input id="polygon" onclick="this.select();" style="background:#DDDDDD;" readonly>
+            </p>
+        </div>
+        <div id="tabSettings">
+            <p>
+                map width <input id="mapWidth" value="100%">
+                <br>map height <input id="mapHeight" value="100%">
+                <button onclick="setMapWidthHeight()">Set</button>
+            </p>
+            <p>
+                source <input id="mapSource" value="http://{s}.tile.osm.org/{z}/{x}/{y}.png">
+                <button onclick="setMapSource()">Set</button>
+            </p>
+            <p>
+                <button onclick="dotCommaSwitch()">dot/comma</button>
+            </p>
+        </div>
+        <div id="tabDraw">
+            <p>
+                grid <input id="grid" value="10">deg
+                <button onclick="updateGrid()">Set</button>
+                <br>point <input id="newPointStr" value="">
+                <button onclick="createNewPoint()">Set</button>
+                <button onclick="rmPoint()">remove</button>
+                <br>polygon <input id="newPolygonStr" value="">
+                <button onclick="createNewPolygon()">Set</button>
+                <button onclick="rmPolygon()">remove</button>
+            </p>
+        </div>
         <p>
             2013 <a href="http://ondrejsika.com" target="blank">Ondrej Sika</a>, <a href="http://leafletjs.com" target="blank">leaflet</a>
         </p>
