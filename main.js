@@ -164,6 +164,7 @@ showTab = function(tab){
 map.on('move', getCoords);
 getCoords();
 hideAllTabs();
-showTab("tabInfo");
+if (tabs.indexOf(window.location.hash.substr(1)) != -1) showTab(window.location.hash.substr(1));
+else showTab("tabInfo");
 
 document.getElementsByClassName("leaflet-control-attribution")[0].style.display = "none";
