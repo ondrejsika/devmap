@@ -1,6 +1,7 @@
 var map = L.map('map').setView([49.7447656, 13.3752194], 3);
 var newPolygon;
 var newPoint;
+var grid;
 var newPoints = [];
 
 getTiles = function(source){
@@ -14,9 +15,13 @@ setMapSource = function(){
     tiles = getTiles(document.getElementById("mapSource").value)
 }
 
-updateGrid = function(){
+removeGrid = function(){
     grid.forEach(function(e){map.removeLayer(e)});
     grid = [];
+}
+
+updateGrid = function(){
+    removeGrid();
     setGrid(Number(document.getElementById("grid").value))
 }
 
