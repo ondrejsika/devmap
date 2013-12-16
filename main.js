@@ -37,7 +37,7 @@ ArrayRemove = function(a, e){
         else break;
     }
     return a;
-} 
+}
 
 createNewPolygon = function(){
     rmPolygon();
