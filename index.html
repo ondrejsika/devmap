@@ -18,6 +18,7 @@
         <div id="tabInfo">
             <p>
                 center: <span id="center"></span>
+                <br><a id="geoapiv1">geoapi v1</a>
             </p>
             <p>
                 north: <span id="north"></span>
@@ -45,6 +46,10 @@
             <p>
                 source <input id="mapSource" value="http://{s}.tile.osm.org/{z}/{x}/{y}.png">
                 <button onclick="setMapSource()">Set</button>
+            </p>
+            <p>
+                api <input id="apiUrl" value="http://geoapi.pya.cz">
+                <button onclick="setApiUrl()">Set</button>
             </p>
             <p>
                 <button onclick="dotCommaSwitch()">dot/comma</button>

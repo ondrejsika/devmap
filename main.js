@@ -3,6 +3,7 @@ var newPolygon;
 var newPoint;
 var grid;
 var newPoints = [];
+var geoApiUrl = "http://geoapi.pya.cz"
 
 getTiles = function(source){
     return L.tileLayer(source, {}).addTo(map);
@@ -13,6 +14,10 @@ var tiles = getTiles('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
 setMapSource = function(){
     map.removeLayer(tiles);
     tiles = getTiles(document.getElementById("mapSource").value)
+}
+
+setApiUrl = function(){
+    geoApiUrl = document.getElementById("apiUrl").value;
 }
 
 removeGrid = function(){
@@ -139,6 +144,8 @@ getCoords = function(){
     document.getElementById("northSouth").innerHTML = (map.getBounds().getNorth() - map.getBounds().getSouth()).toString().replace(".", dotComma);
     document.getElementById("zoom").innerHTML = map.getZoom();
     document.getElementById("polygon").value = getPolygon();
+
+    document.getElementById("geoapiv1").href = geoApiUrl+"/api/v1/?longitude="+map.getBounds().getCenter().lng.toString() + "&latitude=" + map.getBounds().getCenter().lat.toString();
 }
 
 setMapWidthHeight = function(){
